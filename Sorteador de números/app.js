@@ -1,17 +1,41 @@
 function sortear(){
-    let quantidade = parseInt(document.querySelector('input#quantidade').value)
-    let de = parseInt(document.querySelector('input#de').value)
-    let ate = parseInt(document.querySelector('input#ate').value)
+    let quantidade = Number(document.querySelector('input#quantidade').value)
+    let de = Number(document.querySelector('input#de').value)
+    let ate = Number(document.querySelector('input#ate').value)
+
     let sorteados = []
-    let numero;
+    let numeros;
 
     for(let i = 0; i < quantidade; i++){
-        numero = obterNumeroAleatorio(de, ate)
-        sorteados.push(numero)
+        numeros = obterNumeroAleatorio(de, ate)
+
+        while(sorteados.includes(numeros)){
+            numeros = obterNumeroAleatorio(de, ate)
+        }
+
+        sorteados.push(numeros)
     }
-    console.log(sorteados)
+    
+    let resultado = document.querySelector('#resultado')
+    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`
+    alterarStatusBotao()
 }
 
 function obterNumeroAleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function alterarStatusBotao(){
+    let botao = document.querySelector('#btn-reiniciar')
+    if (botao.classList.contains('container__botao-desabilitado')) {
+        botao.classList.remove('container__botao-desabilitado');
+        botao.classList.add('container__botao');
+    }
+}
+
+function reiniciar(){
+    document.querySelector('input#quantidade').value = ''
+    document.querySelector('input#de').value = ''
+    document.querySelector('input#ate').value = ''
+    document.querySelector('#resultado').innerHTML = `<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>`
 }
