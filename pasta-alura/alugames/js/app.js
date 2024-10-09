@@ -35,3 +35,16 @@ function alterarStatus(id){
         console.log(`Foi alugado ${alugados.length} jogo. É ele: ${alugados}`)
     }
 }
+
+
+// let nome = prompt('Digite seu nome').toLowerCase()
+
+// let nomeInvertido = nome.split('').reverse().join('')
+
+// console.log(nomeInvertido)
+
+// if(nome === nomeInvertido){
+//     alert(`${nome} é políndromo`)
+// } else {
+//     alert(`${nome} não é políndromo`)
+// }
